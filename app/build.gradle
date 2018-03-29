@@ -11,6 +11,18 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary= true
     }
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+
+    repositories {
+        jcenter()
+        mavenCentral()
+        maven {
+            url "https://jitpack.io"
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -30,5 +42,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
     compile 'com.afollestad.material-dialogs:core:0.9.4.4'
+    compile 'com.github.javiersantos:MaterialStyledDialogs:2.1'
 
 }

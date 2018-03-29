@@ -74,6 +74,7 @@ public class LocationUpdateService extends Service {
         myLocationListener = new android.location.LocationListener() {
 
             public void onLocationChanged(Location locationListener) {
+
                 Log.d(TAGONE, "onLocationChanged: " + locationListener.getLatitude() + "--> || -->" + locationListener.getLongitude());
                // Log.d(TAGONE, "lat: " + locationListener.getLatitude() + "   ||   lng --> " + locationListener.getLongitude()+"   ||   time --> "+getCurrentTime(System.currentTimeMillis()));
                 driverLocation = locationListener;

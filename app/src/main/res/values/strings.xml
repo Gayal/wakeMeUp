@@ -3,4 +3,9 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+
+    <string name="wake_me_up">Wake me Up</string>
+    <string name="do_you_need_to_wake_up">Do yo need to wake up</string>
+    <string name="yes">yes</string>
+    <string name="no">no</string>
 </resources>
