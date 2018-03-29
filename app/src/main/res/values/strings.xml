@@ -8,4 +8,8 @@
     <string name="do_you_need_to_wake_up">Do yo need to wake up</string>
     <string name="yes">yes</string>
     <string name="no">no</string>
+
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+
 </resources>

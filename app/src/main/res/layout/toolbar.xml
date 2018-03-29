@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/toolbar"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:fitsSystemWindows="true"
+    android:minHeight="?attr/actionBarSize"
+    android:theme="@style/Theme.AppCompat.NoActionBar"
+    android:background="@color/white"
+    android:elevation="4dp">
+
+    <!--tool bar title-->
+    <TextView
+        android:id="@+id/actionbar_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:maxLines="1"
+        android:clickable="false"
+        android:focusable="false"
+        android:longClickable="false"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textAllCaps="true"
+        android:textColor="@color/colorPrimary" />
+
+    <!--tool bar image-->
+    <ImageView
+        android:id="@+id/imageView_toolbarIcon"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/ic_stat_name" />
+
+</android.support.v7.widget.Toolbar>

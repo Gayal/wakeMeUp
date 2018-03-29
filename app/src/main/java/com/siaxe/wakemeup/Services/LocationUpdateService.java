@@ -200,5 +200,7 @@ public class LocationUpdateService extends Service {
 
         return  (date + " " + time);
     }
+
+
 }
 
