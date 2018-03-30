@@ -7,18 +7,6 @@
     android:layout_height="match_parent"
     tools:context="com.siaxe.wakemeup.Activity.MainActivity">
 
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/navigation"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="0dp"
-        android:layout_marginStart="0dp"
-        android:background="?android:attr/windowBackground"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:menu="@menu/navigation" />
-
     <!--drawer layout-->
     <android.support.v4.widget.DrawerLayout
         android:id="@+id/drawer_layout"
@@ -29,7 +17,8 @@
         <!-- This LinearLayout represents the contents of the screen  -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/colorPrimary"
             android:orientation="vertical">
 
             <!-- The ActionBar displayed at the top -->
@@ -77,6 +66,17 @@
 
     </android.support.v4.widget.DrawerLayout>
 
-
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="0dp"
+        android:layout_marginStart="0dp"
+        android:layout_alignParentBottom="true"
+        android:background="?android:attr/windowBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:menu="@menu/navigation" />
 
 </RelativeLayout>

@@ -9,7 +9,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        vectorDrawables.useSupportLibrary= true
+        vectorDrawables.useSupportLibrary = true
     }
     dexOptions {
         javaMaxHeapSize "4g"
@@ -45,5 +45,6 @@ dependencies {
     compile 'com.github.javiersantos:MaterialStyledDialogs:2.1'
     compile 'com.jakewharton:butterknife:8.4.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
+    compile 'com.github.apl-devs:appintro:v4.2.3'
 
 }

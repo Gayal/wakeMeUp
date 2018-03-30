@@ -74,6 +74,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+
+        Intent newIntent = new Intent(this,IntroActivity.class);
+        startActivity(newIntent);
+
         ButterKnife.bind(this);
 
         setUpNavigationAndToolbar();
