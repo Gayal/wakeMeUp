@@ -1,11 +1,17 @@
 package com.siaxe.wakemeup.Activity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -30,16 +36,23 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.github.javiersantos.materialstyleddialogs.MaterialStyledDialog;
 import com.siaxe.wakemeup.R;
 import com.siaxe.wakemeup.Services.LocationUpdateService;
+import com.siaxe.wakemeup.Utils.Constants;
 import com.siaxe.wakemeup.Utils.UISetup;
+import com.siaxe.wakemeup.fragment.FragmentSelectContact;
+import com.wafflecopter.multicontactpicker.ContactResult;
+import com.wafflecopter.multicontactpicker.MultiContactPicker;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private static String TAG = "TAGMain";
     ImageView imageViewToolbarIcon;
     TextView textviewTitle;
+
 
     @BindView(R.id.navigationView)
     NavigationView navView;
@@ -49,6 +62,35 @@ public class MainActivity extends AppCompatActivity {
     ActionBarDrawerToggle drawerToggle;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_main);
+
+//        set intro activity
+        /*Intent newIntent = new Intent(this,IntroActivity.class);
+        startActivity(newIntent);*/
+
+//        set navigation view
+        ButterKnife.bind(this);
+        setUpNavigationAndToolbar();
+        viewStyle();
+
+//        bottom navigation
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.navigationView);
+        navigationView.setNavigationItemSelectedListener(this);
+
+//        promptToAskStart();
+//        TODO: validate if not enough credit to send sms
+//        sendSMS("+94715895271","ado this is send by machine");
+
+    }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -69,28 +111,28 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    private NavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener = new NavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-        setContentView(R.layout.activity_main);
 
-        Intent newIntent = new Intent(this,IntroActivity.class);
-        startActivity(newIntent);
+            return false;
+        }
+    };
 
-        ButterKnife.bind(this);
 
-        setUpNavigationAndToolbar();
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == Constants.GET_PHONE_NUMBER){
+            if(resultCode == RESULT_OK) {
+                List<ContactResult> results = MultiContactPicker.obtainResult(data);
 
-        viewStyle();
+                Log.d(TAG, "onActivityResult: --> "+results.size());
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
-//        promptToAskStart();
-//        TODO: validate if not enough credit to send sms
-//        sendSMS("+94715895271","ado this is send by machine");
-
+            } else if(resultCode == RESULT_CANCELED){
+                System.out.println("User closed the picker without selecting items.");
+            }
+        }
     }
 
     private void setUpNavigationAndToolbar() {
@@ -189,6 +231,19 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void replaceFragment(Fragment fragment) {
+
+
+        Log.d("TEST", "replaceFragment: "+fragment.getClass().getName());
+
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.addToBackStack(fragment.getClass().getName());
+        ft.replace(R.id.flContent, fragment);
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        ft.commit();
+
+    }
 
     @Override
     protected void onResume() {
@@ -217,5 +272,24 @@ public class MainActivity extends AppCompatActivity {
 
         Log.d(TAG, "onDestroy: --> start");
 
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+        switch(item.getItemId()){
+            case R.id.navigation_settings:
+//                   set contact list
+                Fragment fragmentZero = new FragmentSelectContact();
+                replaceFragment(fragmentZero);
+
+                return true;
+            case R.id.navigation_dashboard:
+
+                return true;
+            case R.id.navigation_notifications:
+                return true;
+        }
+        return false;
     }
 }

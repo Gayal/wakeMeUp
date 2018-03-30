@@ -47,4 +47,6 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
     compile 'com.github.apl-devs:appintro:v4.2.3'
 
+    compile 'com.github.broakenmedia:MultiContactPicker:1.7'
+
 }
