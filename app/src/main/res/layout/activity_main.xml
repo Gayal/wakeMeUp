@@ -12,13 +12,13 @@
         android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
+        android:fitsSystemWindows="true"
+        tools:openDrawer="start">
 
         <!-- This LinearLayout represents the contents of the screen  -->
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:background="@color/colorPrimary"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <!-- The ActionBar displayed at the top -->
@@ -34,49 +34,38 @@
                 android:layout_height="match_parent"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-        </LinearLayout>
+
+            <android.support.design.widget.BottomNavigationView
+                android:id="@+id/navigation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="0dp"
+                android:layout_marginStart="0dp"
+                android:layout_alignParentBottom="true"
+                android:background="?android:attr/windowBackground"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:menu="@menu/navigation" />
+
+        </RelativeLayout>
 
         <!-- navigation view -->
         <android.support.design.widget.NavigationView
             android:id="@+id/navigationView"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            android:background="@color/colorPrimary"
-            android:fitsSystemWindows="true">
+            android:background="@color/colorAccent"
+            android:fitsSystemWindows="true"
+            app:itemTextColor="@color/white"
+            app:headerLayout="@layout/nav_header_main"
+            app:menu="@menu/navigation_menu"/>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
 
-                <include layout="@layout/nav_header"
-                    android:id="@+id/header"/>
-
-                <android.support.v7.widget.RecyclerView
-                    android:layout_below="@+id/header"
-                    android:id="@+id/recyclerView"
-                    android:layout_marginBottom="25dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                </android.support.v7.widget.RecyclerView>
-
-            </RelativeLayout>
-
-        </android.support.design.widget.NavigationView>
 
     </android.support.v4.widget.DrawerLayout>
 
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/navigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="0dp"
-        android:layout_marginStart="0dp"
-        android:layout_alignParentBottom="true"
-        android:background="?android:attr/windowBackground"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:menu="@menu/navigation" />
+
 
 </RelativeLayout>
